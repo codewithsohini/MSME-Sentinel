@@ -1,0 +1,355 @@
+@import "tailwindcss";
+
+:root {
+  /* Warm Lavender-Tinted Base Canvas */
+  --bg: #eae7f2;
+  --bg-subtle: #f1eff8;
+  --sidebar-bg: #dedae9;
+  
+  /* Default Neumorphic Surface */
+  --surface: #eae7f2;
+  --surface-raised: #eae7f2;
+  --surface-subtle: #f2f0f8;
+  --surface-inset: #ddd8e7;
+  
+  /* Primary Text & Neutrals */
+  --text-primary: #212534;
+  --text-secondary: #565d70;
+  --text-muted: #828a9c;
+  --border-subtle: #d6d0e4;
+  --border-strong: #c5bdd8;
+  
+  /* Global Tinted Shadows for Base Canvas */
+  --shadow-dark: #cac4dc;
+  --shadow-darker: #b8b0cf;
+  --shadow-light: #ffffff;
+  
+  /* 1. Main Lavender (Primary Nav, Accents, Key Highlights) */
+  --lavender: #7a6ab4;
+  --lavender-hover: #6c5aa8;
+  --lavender-active: #5d4c97;
+  --lavender-surface: #eeeaf8;
+  --lavender-subtle: #f5f2fb;
+  --lavender-border: #dcd4f2;
+  --lavender-shadow-dark: #d0c7e8;
+  --lavender-text: #483a7a;
+  
+  /* 2. Dusty Rose / Blush (Secondary Highlights, Overdue, Stressed States) */
+  --blush: #b95d77;
+  --blush-hover: #a64d67;
+  --blush-surface: #f8eaef;
+  --blush-subtle: #fcf3f6;
+  --blush-border: #edd4dc;
+  --blush-shadow-dark: #dfcad3;
+  --blush-text: #733045;
+  
+  /* 3. Powder Blue (Analytical Cards, Cash Flow, Information) */
+  --powder-blue: #4a75a5;
+  --powder-blue-hover: #3b6492;
+  --blue-surface: #e8f0f8;
+  --blue-subtle: #f2f6fc;
+  --blue-border: #d0e0f2;
+  --blue-shadow-dark: #c8d7e8;
+  --blue-text: #2c4d72;
+  
+  /* 4. Sage (Healthy Buffer, Positive Cash Trends, Active Ops) */
+  --sage: #3f7b58;
+  --sage-hover: #326748;
+  --sage-surface: #e7f2ec;
+  --sage-subtle: #f2f7f4;
+  --sage-border: #cfe3d6;
+  --sage-shadow-dark: #c6dacf;
+  --sage-text: #235237;
+  
+  /* 5. Soft Peach / Apricot (Operating Expenses, Warnings, Inflation) */
+  --peach: #b37346;
+  --peach-hover: #9c6036;
+  --peach-surface: #faefe5;
+  --peach-subtle: #fcf6f0;
+  --peach-border: #eddccf;
+  --peach-shadow-dark: #e5d4c5;
+  --peach-text: #734220;
+  
+  /* 6. Coral / Muted Red (Critical Risks, Severe Breaches) */
+  --coral: #b64e4e;
+  --coral-hover: #a13d3d;
+  --coral-surface: #f9ebeb;
+  --coral-subtle: #fcf4f4;
+  --coral-border: #edd0d0;
+  --coral-shadow-dark: #e4c9c9;
+  --coral-text: #7a2a2a;
+
+  /* Backward Compatibility Aliases */
+  --accent: var(--lavender);
+  --accent-hover: var(--lavender-hover);
+  --accent-active: var(--lavender-active);
+  --success: var(--sage);
+  --success-soft: var(--sage-surface);
+  --warning: var(--peach);
+  --warning-soft: var(--peach-surface);
+  --danger: var(--coral);
+  --danger-soft: var(--coral-surface);
+  --info: var(--powder-blue);
+
+  --radius-large: 24px;
+  --radius-medium: 16px;
+  --radius-small: 12px;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ==========================================================
+   Soft Colorful Neumorphic Core Utility Classes
+   ========================================================== */
+
+/* Standard Neutral Tinted Raised Surfaces */
+.neu-raised {
+  background-color: var(--surface);
+  box-shadow: 8px 8px 20px var(--shadow-dark), -8px -8px 20px var(--shadow-light);
+  border-radius: var(--radius-medium);
+}
+
+.neu-raised-sm {
+  background-color: var(--surface);
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+  border-radius: var(--radius-small);
+}
+
+.neu-raised-lg {
+  background-color: var(--surface);
+  box-shadow: 12px 12px 28px var(--shadow-dark), -12px -12px 28px var(--shadow-light);
+  border-radius: var(--radius-large);
+}
+
+/* Inset / Sunken Containers */
+.neu-inset {
+  background-color: var(--surface);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  border-radius: var(--radius-medium);
+}
+
+.neu-inset-sm {
+  background-color: var(--surface);
+  box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+  border-radius: var(--radius-small);
+}
+
+/* ==========================================================
+   Tinted Neumorphic Cards with Optical Color Harmony
+   ========================================================== */
+
+/* 1. Lavender Card (Receivables, Primary Focus) */
+.neu-card-lavender {
+  background-color: var(--lavender-surface);
+  box-shadow: 7px 7px 18px var(--lavender-shadow-dark), -7px -7px 18px #ffffff;
+  border: 1px solid var(--lavender-border);
+  border-radius: var(--radius-medium);
+}
+
+.neu-inset-lavender {
+  background-color: var(--lavender-surface);
+  box-shadow: inset 3px 3px 6px var(--lavender-shadow-dark), inset -3px -3px 6px #ffffff;
+  border-radius: var(--radius-small);
+}
+
+/* 2. Blush / Rose Card (Overdue, Stressed, Warnings) */
+.neu-card-blush {
+  background-color: var(--blush-surface);
+  box-shadow: 7px 7px 18px var(--blush-shadow-dark), -7px -7px 18px #ffffff;
+  border: 1px solid var(--blush-border);
+  border-radius: var(--radius-medium);
+}
+
+.neu-inset-blush {
+  background-color: var(--blush-surface);
+  box-shadow: inset 3px 3px 6px var(--blush-shadow-dark), inset -3px -3px 6px #ffffff;
+  border-radius: var(--radius-small);
+}
+
+/* 3. Powder Blue Card (Cash-Flow, Analytical, Revenue) */
+.neu-card-blue {
+  background-color: var(--blue-surface);
+  box-shadow: 7px 7px 18px var(--blue-shadow-dark), -7px -7px 18px #ffffff;
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-medium);
+}
+
+.neu-inset-blue {
+  background-color: var(--blue-surface);
+  box-shadow: inset 3px 3px 6px var(--blue-shadow-dark), inset -3px -3px 6px #ffffff;
+  border-radius: var(--radius-small);
+}
+
+/* 4. Sage Card (Current Cash, Healthy Buffer, Stabilized Ops) */
+.neu-card-sage {
+  background-color: var(--sage-surface);
+  box-shadow: 7px 7px 18px var(--sage-shadow-dark), -7px -7px 18px #ffffff;
+  border: 1px solid var(--sage-border);
+  border-radius: var(--radius-medium);
+}
+
+.neu-inset-sage {
+  background-color: var(--sage-surface);
+  box-shadow: inset 3px 3px 6px var(--sage-shadow-dark), inset -3px -3px 6px #ffffff;
+  border-radius: var(--radius-small);
+}
+
+/* 5. Peach Card (Monthly Expenses, Working Capital Outflows) */
+.neu-card-peach {
+  background-color: var(--peach-surface);
+  box-shadow: 7px 7px 18px var(--peach-shadow-dark), -7px -7px 18px #ffffff;
+  border: 1px solid var(--peach-border);
+  border-radius: var(--radius-medium);
+}
+
+.neu-inset-peach {
+  background-color: var(--peach-surface);
+  box-shadow: inset 3px 3px 6px var(--peach-shadow-dark), inset -3px -3px 6px #ffffff;
+  border-radius: var(--radius-small);
+}
+
+/* 6. Coral Card (Critical Risks & Breaches) */
+.neu-card-coral {
+  background-color: var(--coral-surface);
+  box-shadow: 7px 7px 18px var(--coral-shadow-dark), -7px -7px 18px #ffffff;
+  border: 1px solid var(--coral-border);
+  border-radius: var(--radius-medium);
+}
+
+/* ==========================================================
+   Interactive Neumorphic Buttons & Inputs
+   ========================================================== */
+
+.neu-btn {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+  border-radius: var(--radius-small);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.neu-btn:hover {
+  box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
+  transform: translateY(-1px);
+}
+
+.neu-btn:active, .neu-btn.active {
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  transform: translateY(1px);
+}
+
+/* Primary Action Button (Lavender Theme) */
+.neu-btn-primary {
+  background: linear-gradient(135deg, #8574c2 0%, #6f5ea6 100%);
+  color: #ffffff;
+  box-shadow: 4px 4px 12px var(--lavender-shadow-dark), -4px -4px 12px #ffffff;
+  border-radius: var(--radius-small);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.neu-btn-primary:hover {
+  background: linear-gradient(135deg, #8f7ec9 0%, #7664ad 100%);
+  box-shadow: 6px 6px 16px var(--lavender-shadow-dark), -6px -6px 16px #ffffff;
+  transform: translateY(-1px);
+}
+
+.neu-btn-primary:active {
+  box-shadow: inset 3px 3px 6px rgba(45, 30, 80, 0.4);
+  transform: translateY(1px);
+}
+
+/* Secondary Action Button (Blush Theme) */
+.neu-btn-blush {
+  background: linear-gradient(135deg, #c76a84 0%, #ad526c 100%);
+  color: #ffffff;
+  box-shadow: 4px 4px 12px var(--blush-shadow-dark), -4px -4px 12px #ffffff;
+  border-radius: var(--radius-small);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.neu-btn-blush:hover {
+  background: linear-gradient(135deg, #d1758f 0%, #b85a74 100%);
+  box-shadow: 6px 6px 16px var(--blush-shadow-dark), -6px -6px 16px #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Form Controls */
+.neu-input {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  border-radius: var(--radius-small);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s;
+}
+
+.neu-input:focus {
+  outline: none;
+  border-color: var(--lavender);
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light), 0 0 0 2px rgba(122, 106, 180, 0.2);
+}
+
+/* Sidebar Navigation Item */
+.neu-nav-item {
+  color: var(--text-secondary);
+  border-radius: var(--radius-small);
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.neu-nav-item:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 3px 3px 8px var(--shadow-dark), -3px -3px 8px var(--shadow-light);
+}
+
+.neu-nav-item.active {
+  color: var(--lavender-text);
+  background-color: var(--lavender-surface);
+  box-shadow: inset 2px 2px 5px var(--lavender-shadow-dark), inset -2px -2px 5px #ffffff;
+  border: 1px solid var(--lavender-border);
+  font-weight: 600;
+}
+
+/* Ambient Background Blobs */
+.bg-ambient-gradient {
+  background: radial-gradient(circle at 15% 15%, rgba(220, 214, 240, 0.5) 0%, transparent 45%),
+              radial-gradient(circle at 85% 20%, rgba(247, 233, 238, 0.45) 0%, transparent 40%),
+              radial-gradient(circle at 50% 60%, rgba(231, 238, 248, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 80% 85%, rgba(231, 242, 235, 0.45) 0%, transparent 45%),
+              radial-gradient(circle at 10% 85%, rgba(250, 240, 231, 0.4) 0%, transparent 45%);
+}
+
+/* Custom Soft Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--shadow-dark);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--shadow-darker);
+}
+

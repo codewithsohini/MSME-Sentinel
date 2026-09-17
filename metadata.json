@@ -1,0 +1,6 @@
+{
+  "name": "MSME Sentinel",
+  "description": "Financial intelligence, working capital health, and crisis simulation platform for MSMEs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

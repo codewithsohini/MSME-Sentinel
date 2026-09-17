@@ -1,0 +1,167 @@
+{
+  "entities": {
+    "Business": {
+      "title": "Business",
+      "description": "MSME profile with cash balances and reserve targets",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "industry": { "type": "string" },
+        "currency": { "type": "string" },
+        "currentCash": { "type": "number" },
+        "minimumCashReserve": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "currency", "currentCash", "minimumCashReserve"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Client accounts with payment delay and revenue share",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "name": { "type": "string" },
+        "totalRevenue": { "type": "number" },
+        "invoiceCount": { "type": "number" },
+        "outstandingAmount": { "type": "number" },
+        "averagePaymentDelay": { "type": "number" },
+        "paymentReliability": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+        "revenueShare": { "type": "number" }
+      },
+      "required": ["id", "businessId", "name"]
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Billing records with issue date, due date and payment status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "invoiceNumber": { "type": "string" },
+        "issueDate": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "amount": { "type": "number" },
+        "taxAmount": { "type": "number" },
+        "outstandingAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["PAID", "PARTIAL", "UNPAID", "OVERDUE"] },
+        "extractionConfidence": { "type": "number" }
+      },
+      "required": ["id", "businessId", "customerId", "invoiceNumber", "amount", "dueDate"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Bank and receipt transactions reconciled against invoices",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "invoiceId": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentDate": { "type": "string" },
+        "reference": { "type": "string" },
+        "reconciliationConfidence": { "type": "number" }
+      },
+      "required": ["id", "businessId", "amount", "paymentDate"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Outflows categorized by recurring and criticality",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "category": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "recurring": { "type": "boolean" },
+        "critical": { "type": "boolean" }
+      },
+      "required": ["id", "businessId", "category", "amount", "date"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Sales records for revenue tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "date": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" }
+      },
+      "required": ["id", "businessId", "date", "amount"]
+    },
+    "Scenario": {
+      "title": "Scenario",
+      "description": "Crisis simulation runs and parameters",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "title": { "type": "string" },
+        "type": { "type": "string" },
+        "parameters": { "type": "object" },
+        "createdAt": { "type": "string" },
+        "results": { "type": "object" }
+      },
+      "required": ["id", "businessId", "type", "createdAt"]
+    },
+    "Risk": {
+      "title": "Risk",
+      "description": "Detected financial vulnerability with numerical evidence and actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "businessId": { "type": "string" },
+        "riskType": { "type": "string" },
+        "severity": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+        "metric": { "type": "string" },
+        "explanation": { "type": "string" },
+        "action": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "businessId", "riskType", "severity", "metric", "explanation"]
+    }
+  },
+  "firestore": {
+    "/businesses/{businessId}": {
+      "schema": "Business",
+      "description": "Root business entity for an MSME profile"
+    },
+    "/businesses/{businessId}/customers/{customerId}": {
+      "schema": "Customer",
+      "description": "Customers belonging to the MSME"
+    },
+    "/businesses/{businessId}/invoices/{invoiceId}": {
+      "schema": "Invoice",
+      "description": "Invoices issued by the MSME"
+    },
+    "/businesses/{businessId}/payments/{paymentId}": {
+      "schema": "Payment",
+      "description": "Incoming payments received"
+    },
+    "/businesses/{businessId}/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Operational and recurring business expenses"
+    },
+    "/businesses/{businessId}/sales/{saleId}": {
+      "schema": "Sale",
+      "description": "Completed sales transactions"
+    },
+    "/businesses/{businessId}/scenarios/{scenarioId}": {
+      "schema": "Scenario",
+      "description": "Simulated stress-test scenarios"
+    },
+    "/businesses/{businessId}/risks/{riskId}": {
+      "schema": "Risk",
+      "description": "System-detected financial risks"
+    }
+  }
+}
